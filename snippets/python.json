@@ -1,0 +1,166 @@
+{
+	"Asok Model": {
+		"prefix": "as-model",
+		"body": [
+			"from asok import Model, Field, Relation",
+			"",
+			"class ${1:ModelName}(Model):",
+			"\t${2:field} = Field.String(max_length=${3:255}, nullable=${4:False})",
+			"\t$0"
+		],
+		"description": "Scaffold an Asok Model"
+	},
+	"Asok Field Vector": {
+		"prefix": "as-field-vector",
+		"body": "${1:embedding} = Field.Vector(dimensions=${2:1536})",
+		"description": "Asok Vector Field (for AI/Embeddings)"
+	},
+	"Asok Field String": {
+		"prefix": "as-field-string",
+		"body": "${1:name} = Field.String(max_length=${2:255}, nullable=${3:False})",
+		"description": "Asok String Field"
+	},
+	"Asok Field Text": {
+		"prefix": "as-field-text",
+		"body": "${1:name} = Field.Text(nullable=${2:False})",
+		"description": "Asok Text Field"
+	},
+	"Asok Field Integer": {
+		"prefix": "as-field-int",
+		"body": "${1:name} = Field.Integer(default=${2:0})",
+		"description": "Asok Integer Field"
+	},
+	"Asok Field Boolean": {
+		"prefix": "as-field-bool",
+		"body": "${1:name} = Field.Boolean(default=${2:False})",
+		"description": "Asok Boolean Field"
+	},
+	"Asok Field Slug": {
+		"prefix": "as-field-slug",
+		"body": "${1:slug} = Field.Slug(populate_from='${2:title}')",
+		"description": "Asok Slug Field"
+	},
+	"Asok Field ForeignKey": {
+		"prefix": "as-field-fk",
+		"body": "${1:author_id} = Field.ForeignKey(lambda: ${2:User})",
+		"description": "Asok ForeignKey Field"
+	},
+	"Asok Field File": {
+		"prefix": "as-field-file",
+		"body": "${1:file} = Field.File(upload_to='${2:uploads}')",
+		"description": "Asok File Field"
+	},
+	"Asok Field Timestamps": {
+		"prefix": "as-field-timestamps",
+		"body": [
+			"created_at = Field.CreatedAt()",
+			"updated_at = Field.UpdatedAt()"
+		],
+		"description": "Asok CreatedAt/UpdatedAt Fields"
+	},
+	"Asok Field SoftDelete": {
+		"prefix": "as-field-softdelete",
+		"body": "deleted_at = Field.SoftDelete()",
+		"description": "Asok SoftDelete Field"
+	},
+	"Asok Relation BelongsTo": {
+		"prefix": "as-rel-bt",
+		"body": "${1:author} = Relation.BelongsTo('${2:User}')",
+		"description": "Asok BelongsTo Relation"
+	},
+	"Asok Relation HasMany": {
+		"prefix": "as-rel-hm",
+		"body": "${1:posts} = Relation.HasMany('${2:Post}')",
+		"description": "Asok HasMany Relation"
+	},
+	"Asok Form": {
+		"prefix": "as-form",
+		"body": [
+			"form = Form({",
+			"\t'${1:name}': Form.text('${2:Name}', '${3:required}'),",
+			"\t$0",
+			"}, request)",
+			"",
+			"if form.validate():",
+			"\t# Process data",
+			"\tpass"
+		],
+		"description": "Scaffold an Asok Form"
+	},
+	"Asok Form Field": {
+		"prefix": "as-form-field",
+		"body": "'${1:name}': Form.${2|text,email,password,textarea,number,file,hidden,checkbox,select,dropdown,radio,image,tags,daterange,toggle,otp,month,rating,timerange,files,autocomplete,cascading,phone,wysiwyg,dropzone,signature,transfer,treeselect|}('${3:Label}', '${4:required}'),",
+		"description": "Add any Asok Form Widget"
+	},
+	"Asok Page Handler": {
+		"prefix": "as-route",
+		"body": [
+			"from asok import Request",
+			"",
+			"def render(request: Request):",
+			"\treturn request.html('${1:page.html}')"
+		],
+		"description": "Scaffold an Asok Page (render)"
+	},
+	"Asok Form Action": {
+		"prefix": "as-action",
+		"body": [
+			"def action_${1:name}(request: Request):",
+			"\t$0",
+			"\treturn request.redirect('/')"
+		],
+		"description": "Scaffold an Asok Form Action Handler"
+	},
+	"Asok API Handler": {
+		"prefix": "as-api",
+		"body": [
+			"from asok import Request, api",
+			"",
+			"@api(summary=\"${1:Summary}\")",
+			"def get(request: Request):",
+			"\t$0",
+			"\treturn request.api({'status': 'ok'})"
+		],
+		"description": "Scaffold an Asok API Route (with @api)"
+	},
+	"Asok Rate Limit": {
+		"prefix": "as-ratelimit",
+		"body": "@RateLimit(limit=${1:60}, window=${2:60})",
+		"description": "Asok Rate Limit Decorator"
+	},
+	"Asok Internal Only": {
+		"prefix": "as-internal",
+		"body": "@internal_only",
+		"description": "Asok Internal Only Decorator"
+	},
+	"Asok Component Class": {
+		"prefix": "as-component",
+		"body": [
+			"from asok import Component",
+			"from asok.component import exposed",
+			"",
+			"class ${1:MyComponent}(Component):",
+			"\t${2:count} = ${3:0}",
+			"",
+			"\t@exposed",
+			"\tdef ${4:increment}(self):",
+			"\t\tself.$2 += 1",
+			"",
+			"\tdef render(self):",
+			"\t\treturn self.html(\"${5:component.html}\")"
+		],
+		"description": "Scaffold an Asok Reactive Component Class"
+	},
+	"Asok Schema": {
+		"prefix": "as-schema",
+		"body": [
+			"from asok import Schema, Field",
+			"",
+			"class ${1:ModelName}Schema(Schema):",
+			"\t${2:id} = Field.Integer()",
+			"\t${3:name} = Field.String()",
+			"\t$0"
+		],
+		"description": "Scaffold an Asok Schema"
+	}
+}

@@ -1,0 +1,276 @@
+{
+	"Asok Variable": {
+		"prefix": "as-var",
+		"body": "{{ $1 }}",
+		"description": "Asok Variable Interpolation"
+	},
+	"Asok If": {
+		"prefix": "as-if",
+		"body": [
+			"{% if ${1:condition} %}",
+			"\t$0",
+			"{% endif %}"
+		],
+		"description": "Asok If Block"
+	},
+	"Asok If Else": {
+		"prefix": "as-ife",
+		"body": [
+			"{% if ${1:condition} %}",
+			"\t$2",
+			"{% else %}",
+			"\t$0",
+			"{% endif %}"
+		],
+		"description": "Asok If/Else Block"
+	},
+	"Asok For Loop": {
+		"prefix": "as-for",
+		"body": [
+			"{% for ${1:item} in ${2:items} %}",
+			"\t$0",
+			"{% endfor %}"
+		],
+		"description": "Asok For Loop"
+	},
+	"Asok Block": {
+		"prefix": "as-block",
+		"body": [
+			"{% block ${1:main} %}",
+			"\t$0",
+			"{% endblock %}"
+		],
+		"description": "Asok Template Block"
+	},
+	"Asok Extends": {
+		"prefix": "as-ext",
+		"body": "{% extends \"${1:html/base.html}\" %}",
+		"description": "Asok Template Inheritance"
+	},
+	"Asok Include": {
+		"prefix": "as-inc",
+		"body": "{% include \"${1:partials/file.html}\" %}",
+		"description": "Asok Template Include"
+	},
+	"Asok Macro": {
+		"prefix": "as-macro",
+		"body": [
+			"{% macro ${1:name}(${2:args}) %}",
+			"\t$0",
+			"{% endmacro %}"
+		],
+		"description": "Asok Template Macro"
+	},
+	"Asok Call": {
+		"prefix": "as-call",
+		"body": [
+			"{% call ${1:macro_name}(${2:args}) %}",
+			"\t$0",
+			"{% endcall %}"
+		],
+		"description": "Asok Template Call"
+	},
+	"Asok Filter Block": {
+		"prefix": "as-filter",
+		"body": [
+			"{% filter ${1:upper} %}",
+			"\t$0",
+			"{% endfilter %}"
+		],
+		"description": "Asok Template Filter Block"
+	},
+	"Asok Set": {
+		"prefix": "as-set",
+		"body": "{% set ${1:var} = ${2:value} %}",
+		"description": "Asok Template Variable Assignment"
+	},
+	"Asok Do": {
+		"prefix": "as-do",
+		"body": "{% do ${1:expression} %}",
+		"description": "Asok Template Do (Execute expression)"
+	},
+	"Asok With": {
+		"prefix": "as-with",
+		"body": [
+			"{% with ${1:var} = ${2:value} %}",
+			"\t$0",
+			"{% endwith %}"
+		],
+		"description": "Asok Template With (Scoped variables)"
+	},
+	"Asok State": {
+		"prefix": "asok-state",
+		"body": "asok-state=\"{ ${1:count: 0} }\"",
+		"description": "Asok Directive: Component State"
+	},
+	"Asok Text": {
+		"prefix": "asok-text",
+		"body": "asok-text=\"${1:expression}\"",
+		"description": "Asok Directive: Reactive Text"
+	},
+	"Asok Show": {
+		"prefix": "asok-show",
+		"body": "asok-show=\"${1:condition}\"",
+		"description": "Asok Directive: Reactive Visibility (Show)"
+	},
+	"Asok Hide": {
+		"prefix": "asok-hide",
+		"body": "asok-hide=\"${1:condition}\"",
+		"description": "Asok Directive: Reactive Visibility (Hide)"
+	},
+	"Asok Class": {
+		"prefix": "asok-class",
+		"body": "asok-class=\"${1:expression}\"",
+		"description": "Asok Directive: Dynamic Class"
+	},
+	"Asok Class Toggle": {
+		"prefix": "asok-class-toggle",
+		"body": "asok-class:${1:active}=\"${2:condition}\"",
+		"description": "Asok Directive: Single Class Toggle"
+	},
+	"Asok Bind": {
+		"prefix": "asok-bind",
+		"body": "asok-bind:${1:attribute}=\"${2:expression}\"",
+		"description": "Asok Directive: Attribute Binding"
+	},
+	"Asok Model": {
+		"prefix": "asok-model",
+		"body": "asok-model=\"${1:variable}\"",
+		"description": "Asok Directive: Two-way Binding"
+	},
+	"Asok On Event": {
+		"prefix": "asok-on",
+		"body": "asok-on:${1:click}=\"${2:expression}\"",
+		"description": "Asok Directive: Event Listener"
+	},
+	"Asok For Directive": {
+		"prefix": "asok-for",
+		"body": [
+			"<template asok-for=\"${1:item} in ${2:items}\">",
+			"\t$0",
+			"</template>"
+		],
+		"description": "Asok Directive: For Loop Template"
+	},
+	"Asok If Directive": {
+		"prefix": "asok-if",
+		"body": [
+			"<template asok-if=\"${1:condition}\">",
+			"\t$0",
+			"</template>"
+		],
+		"description": "Asok Directive: If Template"
+	},
+	"Asok Elif Directive": {
+		"prefix": "asok-elif",
+		"body": [
+			"<template asok-elif=\"${1:condition}\">",
+			"\t$0",
+			"</template>"
+		],
+		"description": "Asok Directive: Else-If Template"
+	},
+	"Asok Else Directive": {
+		"prefix": "asok-else",
+		"body": [
+			"<template asok-else>",
+			"\t$0",
+			"</template>"
+		],
+		"description": "Asok Directive: Else Template"
+	},
+	"Asok Cloak": {
+		"prefix": "asok-cloak",
+		"body": "asok-cloak",
+		"description": "Asok Directive: Cloak"
+	},
+	"Asok Fetch": {
+		"prefix": "asok-fetch",
+		"body": "asok-fetch=\"${1:/api/url}\" asok-fetch-as=\"${2:data}\"",
+		"description": "Asok Directive: Declarative Fetch"
+	},
+	"Asok Init": {
+		"prefix": "asok-init",
+		"body": "asok-init=\"${1:expression}\"",
+		"description": "Asok Directive: Initialization Code"
+	},
+	"Asok Transition": {
+		"prefix": "asok-transition",
+		"body": "asok-transition=\"${1:fade}\"",
+		"description": "Asok Directive: Transition Animation"
+	},
+	"Asok Teleport": {
+		"prefix": "asok-teleport",
+		"body": [
+			"<template asok-teleport=\"${1:#target}\">",
+			"\t$0",
+			"</template>"
+		],
+		"description": "Asok Directive: Teleport content to another element"
+	},
+	"Asok Ref": {
+		"prefix": "asok-ref",
+		"body": "asok-ref=\"${1:name}\"",
+		"description": "Asok Directive: Reference element via $refs"
+	},
+	"Asok Data Block": {
+		"prefix": "data-block",
+		"body": "data-block=\"${1:block_name}\"",
+		"description": "Asok Live Update: Target Block"
+	},
+	"Asok Data URL": {
+		"prefix": "data-url",
+		"body": "data-url=\"${1:/url}\"",
+		"description": "Asok Live Update: Request URL"
+	},
+	"Asok Data Swap": {
+		"prefix": "data-swap",
+		"body": "data-swap=\"${1|innerHTML,outerHTML,beforebegin,afterbegin,beforeend,afterend,delete,none|}\"",
+		"description": "Asok Live Update: Swap Strategy"
+	},
+	"Asok Data Trigger": {
+		"prefix": "data-trigger",
+		"body": "data-trigger=\"${1:click}\"",
+		"description": "Asok Live Update: Trigger Event"
+	},
+	"Asok Data Indicator": {
+		"prefix": "data-indicator",
+		"body": "data-indicator=\"${1:#selector}\"",
+		"description": "Asok Live Update: Loading Indicator"
+	},
+	"Asok Data Subscribe": {
+		"prefix": "data-subscribe",
+		"body": "data-subscribe=\"model:${1:ModelName}:${2:id}\"",
+		"description": "Asok Live Update: Real-time Subscription"
+	},
+	"Asok WS Click": {
+		"prefix": "ws-click",
+		"body": "ws-click=\"${1:method}\"",
+		"description": "Asok Reactive: WebSocket Click"
+	},
+	"Asok WS Input": {
+		"prefix": "ws-input",
+		"body": "ws-input=\"${1:method}\"",
+		"description": "Asok Reactive: WebSocket Input"
+	},
+	"Asok WS Submit": {
+		"prefix": "ws-submit",
+		"body": "ws-submit=\"${1:method}\"",
+		"description": "Asok Reactive: WebSocket Submit"
+	},
+	"Asok Component Helper": {
+		"prefix": "as-comp",
+		"body": "{{ component('${1:ComponentName}', ${2:props}) }}",
+		"description": "Asok Component Helper"
+	},
+	"Asok Store": {
+		"prefix": "$store",
+		"body": "$store.$0",
+		"description": "Asok Special Variable: Global Store"
+	},
+	"Asok Refs": {
+		"prefix": "$refs",
+		"body": "$refs.$0",
+		"description": "Asok Special Variable: Element References"
+	}
+}

@@ -1,0 +1,217 @@
+{
+	"version": 1.1,
+	"tags": [
+		{ "name": "div" }, { "name": "span" }, { "name": "p" }, { "name": "a" },
+		{ "name": "h1" }, { "name": "h2" }, { "name": "h3" }, { "name": "h4" }, { "name": "h5" }, { "name": "h6" },
+		{ "name": "ul" }, { "name": "ol" }, { "name": "li" }, { "name": "img" },
+		{ "name": "form" }, { "name": "input" }, { "name": "button" }, { "name": "select" }, { "name": "option" },
+		{ "name": "textarea" }, { "name": "label" }, { "name": "table" }, { "name": "tr" }, { "name": "td" }, { "name": "th" },
+		{ "name": "section" }, { "name": "header" }, { "name": "footer" }, { "name": "main" }, { "name": "nav" }, { "name": "aside" },
+		{ "name": "template" }, { "name": "slot" }, { "name": "canvas" }, { "name": "svg" }, { "name": "script" }, { "name": "style" }
+	],
+	"globalAttributes": [
+		{
+			"name": "class",
+			"description": "The class attribute specifies one or more classnames for an element."
+		},
+		{
+			"name": "id",
+			"description": "The id attribute specifies a unique id for an HTML element."
+		},
+		{
+			"name": "style",
+			"description": "The style attribute specifies an inline style for an element."
+		},
+		{
+			"name": "title",
+			"description": "The title attribute specifies extra information about an element."
+		},
+		{
+			"name": "src",
+			"description": "The URL of the external resource to be used by the element."
+		},
+		{
+			"name": "href",
+			"description": "The URL of a linked resource."
+		},
+		{
+			"name": "alt",
+			"description": "The alternate text for an image or other resource."
+		},
+		{
+			"name": "placeholder",
+			"description": "A hint to the user of what can be entered in the control."
+		},
+		{
+			"name": "asok-state",
+			"description": "Define reactive local state for a component. Example: asok-state=\"{ count: 0 }\""
+		},
+		{
+			"name": "asok-text",
+			"description": "Set the text content of an element reactively. Example: asok-text=\"'Count: ' + count\""
+		},
+		{
+			"name": "asok-show",
+			"description": "Toggle element visibility (display: none) based on a truthy/falsy value. Example: asok-show=\"isVisible\""
+		},
+		{
+			"name": "asok-hide",
+			"description": "Hide element (display: none) based on a truthy/falsy value. Example: asok-hide=\"isHidden\""
+		},
+		{
+			"name": "asok-class",
+			"description": "Dynamic class binding. Supports string expressions or object literals. Example: asok-class=\"{ 'active': isOpen }\""
+		},
+		{
+			"name": "asok-class:",
+			"description": "Toggle a specific class based on a truthy value. Example: asok-class:active=\"isOpen\""
+		},
+		{
+			"name": "asok-bind:",
+			"description": "Bind any HTML attribute reactively. Example: asok-bind:href=\"url\""
+		},
+		{
+			"name": "asok-model",
+			"description": "Two-way data binding for form inputs (input, select, textarea). Example: asok-model=\"email\""
+		},
+		{
+			"name": "asok-on:",
+			"description": "Listen for DOM events. Supports modifiers like .prevent, .stop, .debounce-300, .outside. Example: asok-on:click=\"count++\""
+		},
+		{
+			"name": "asok-for",
+			"description": "Iterate over an array. Use on a <template> tag. Example: <template asok-for=\"item in items\">"
+		},
+		{
+			"name": "asok-if",
+			"description": "Conditional rendering. Element is removed from DOM if false. Use on a <template> tag. Example: <template asok-if=\"user.is_admin\">"
+		},
+		{
+			"name": "asok-elif",
+			"description": "Else-if conditional rendering. Example: <template asok-elif=\"user.is_authenticated\">"
+		},
+		{
+			"name": "asok-else",
+			"description": "Else conditional rendering. Example: <template asok-else>"
+		},
+		{
+			"name": "asok-fetch",
+			"description": "Declarative GET request. Updates component state automatically. Example: asok-fetch=\"/api/users\""
+		},
+		{
+			"name": "asok-fetch-as",
+			"description": "Variable name for fetched data (default: 'data'). Example: asok-fetch-as=\"users\""
+		},
+		{
+			"name": "asok-fetch-on",
+			"description": "Trigger event for fetching (default: 'load'). Example: asok-fetch-on=\"click\""
+		},
+		{
+			"name": "asok-fetch-async",
+			"description": "Custom async expression for fetching data. Example: asok-fetch-async=\"data = await fetch('/api').then(r => r.json())\""
+		},
+		{
+			"name": "asok-ref",
+			"description": "Get a reference to an element, accessible via $refs. Example: asok-ref=\"myInput\""
+		},
+		{
+			"name": "asok-init",
+			"description": "Run code when the component initializes. Example: asok-init=\"loadData()\""
+		},
+		{
+			"name": "asok-teleport",
+			"description": "Render content in a different DOM location. Use on a <template> tag. Example: <template asok-teleport=\"#modal-root\">"
+		},
+		{
+			"name": "asok-transition",
+			"description": "Animate element when updated via Reactive Engine or Live Updates. Values: fade, slide, scale. Example: asok-transition=\"fade 300\"",
+			"values": [
+				{ "name": "fade" },
+				{ "name": "slide" },
+				{ "name": "scale" }
+			]
+		},
+		{
+			"name": "asok-cloak",
+			"description": "Hide element until directives are initialized to prevent Flash of Unstyled Content (FOUC)."
+		},
+		{
+			"name": "data-block",
+			"description": "Asok Live Updates: target template block name to render and replace. Example: data-block=\"results\""
+		},
+		{
+			"name": "data-target",
+			"description": "Asok Live Updates: override the target element selector. Example: data-target=\"#other-element\""
+		},
+		{
+			"name": "data-url",
+			"description": "Asok Live Updates: explicit URL for the fetch request. Example: data-url=\"/search\""
+		},
+		{
+			"name": "data-method",
+			"description": "Asok Live Updates: HTTP method (GET or POST). Example: data-method=\"POST\""
+		},
+		{
+			"name": "data-trigger",
+			"description": "Asok Live Updates: event that triggers the request. Example: data-trigger=\"input delay:300ms\""
+		},
+		{
+			"name": "data-swap",
+			"description": "Asok Live Updates: strategy for swapping HTML.",
+			"values": [
+				{ "name": "innerHTML" },
+				{ "name": "outerHTML" },
+				{ "name": "beforebegin" },
+				{ "name": "afterbegin" },
+				{ "name": "beforeend" },
+				{ "name": "afterend" },
+				{ "name": "delete" },
+				{ "name": "none" }
+			]
+		},
+		{
+			"name": "data-push-url",
+			"description": "Asok Live Updates: update browser history URL after swap. Example: data-push-url=\"/new-page\""
+		},
+		{
+			"name": "data-action",
+			"description": "Asok Form Actions: specify action handler in page module. Example: data-action=\"save_profile\""
+		},
+		{
+			"name": "data-indicator",
+			"description": "Asok Live Updates: element to show loading state. Example: data-indicator=\"#spinner\""
+		},
+		{
+			"name": "data-disable",
+			"description": "Asok Live Updates: disable form buttons during request."
+		},
+		{
+			"name": "data-include",
+			"description": "Asok Live Updates: CSS selector for other inputs to include. Example: data-include=\".filters\""
+		},
+		{
+			"name": "data-confirm",
+			"description": "Asok Live Updates: show confirm() dialog before firing. Example: data-confirm=\"Are you sure?\""
+		},
+		{
+			"name": "data-sse",
+			"description": "Asok Live Updates: open SSE stream and swap on each message. Example: data-sse=\"/events/notifications\""
+		},
+		{
+			"name": "data-subscribe",
+			"description": "Asok Live Updates: subscribe to real-time model changes. Example: data-subscribe=\"model:Post:123\""
+		},
+		{
+			"name": "ws-click",
+			"description": "Asok Reactive: trigger server-side method on click via WebSockets. Example: ws-click=\"increment\""
+		},
+		{
+			"name": "ws-input",
+			"description": "Asok Reactive: trigger server-side method on input via WebSockets. Example: ws-input=\"updateSearch\""
+		},
+		{
+			"name": "ws-submit",
+			"description": "Asok Reactive: trigger server-side method on form submit via WebSockets. Example: ws-submit=\"saveForm\""
+		}
+	]
+}

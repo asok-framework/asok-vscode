@@ -1,0 +1,143 @@
+{
+  "name": "asok-vscode",
+  "displayName": "Asok VS Code",
+  "description": "Rapid development toolkit for the Asok Framework",
+  "version": "0.0.1",
+  "icon": "resources/logo.png",
+  "engines": {
+    "vscode": "^1.118.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/asok-framework/asok-vscode"
+  },
+  "homepage": "https://asok-framework.com/",
+  "publisher": "AsokFramework",
+  "keywords": [
+    "asok",
+    "framework",
+    "python",
+    "reactive",
+    "html",
+    "snippets"
+  ],
+  "activationEvents": [
+    "onLanguage:html",
+    "onLanguage:asok-html",
+    "onLanguage:python",
+    "onCommand:asok.dev",
+    "onCommand:asok.migrate",
+    "onCommand:asok.migrateStatus",
+    "onCommand:asok.migrateRollback",
+    "onCommand:asok.seed",
+    "onCommand:asok.routes",
+    "onCommand:asok.createsuperuser",
+    "onCommand:asok.make",
+    "onCommand:asok.makeModel",
+    "onCommand:asok.makePage",
+    "onCommand:asok.makeComponent",
+    "onCommand:asok.makeMiddleware",
+    "onCommand:asok.makeMigration"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "languages": [
+      {
+        "id": "asok-html",
+        "aliases": [
+          "Asok HTML",
+          "asok-html"
+        ],
+        "extensions": [
+          ".html",
+          ".asok"
+        ],
+        "baseLanguage": "html",
+        "configuration": "./language-configuration.json",
+        "icon": {
+          "light": "./resources/asok.svg",
+          "dark": "./resources/asok.svg"
+        }
+      }
+    ],
+    "configurationDefaults": {
+      "[asok-html]": {
+        "editor.suggest.insertMode": "replace",
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "vscode.html-language-features",
+        "emmet.includeLanguages": {
+          "asok-html": "html"
+        },
+        "tailwindCSS.includeLanguages": {
+          "asok-html": "html"
+        }
+      }
+    },
+    "grammars": [
+      {
+        "language": "asok-html",
+        "scopeName": "text.html.asok",
+        "path": "./syntaxes/asok-html.tmLanguage.json",
+        "embeddedLanguages": {
+          "source.js": "javascript"
+        }
+      }
+    ],
+    "html": {
+      "customData": [
+        "./asok-html-data.json"
+      ]
+    },
+    "commands": [
+      { "command": "asok.dev", "title": "Asok: Start Dev Server", "category": "Asok" },
+      { "command": "asok.migrate", "title": "Asok: Run Migrations", "category": "Asok" },
+      { "command": "asok.migrateStatus", "title": "Asok: Migration Status", "category": "Asok" },
+      { "command": "asok.migrateRollback", "title": "Asok: Rollback Last Migration", "category": "Asok" },
+      { "command": "asok.seed", "title": "Asok: Seed Database", "category": "Asok" },
+      { "command": "asok.routes", "title": "Asok: List Routes", "category": "Asok" },
+      { "command": "asok.createsuperuser", "title": "Asok: Create Superuser", "category": "Asok" },
+      { "command": "asok.make", "title": "Asok: Make...", "category": "Asok" },
+      { "command": "asok.makeModel", "title": "Asok: Make Model", "category": "Asok" },
+      { "command": "asok.makePage", "title": "Asok: Make Page", "category": "Asok" },
+      { "command": "asok.makeComponent", "title": "Asok: Make Component", "category": "Asok" },
+      { "command": "asok.makeMiddleware", "title": "Asok: Make Middleware", "category": "Asok" },
+      { "command": "asok.makeMigration", "title": "Asok: Make Migration", "category": "Asok" }
+    ],
+    "snippets": [
+      {
+        "language": "python",
+        "path": "./snippets/python.json"
+      },
+      {
+        "language": "asok-html",
+        "path": "./snippets/html.json"
+      },
+      {
+        "language": "html",
+        "path": "./snippets/html.json"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run package",
+    "compile": "npm run check-types && npm run lint && node esbuild.js",
+    "watch": "npm-run-all -p watch:*",
+    "watch:esbuild": "node esbuild.js --watch",
+    "watch:tsc": "tsc --noEmit --watch --project tsconfig.json",
+    "package": "npm run check-types && npm run lint && node esbuild.js --production",
+    "check-types": "tsc --noEmit",
+    "lint": "eslint src"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.118.0",
+    "@types/node": "22.x",
+    "typescript-eslint": "^8.56.1",
+    "eslint": "^9.39.3",
+    "esbuild": "^0.27.3",
+    "npm-run-all": "^4.1.5",
+    "typescript": "^5.9.3"
+  }
+}

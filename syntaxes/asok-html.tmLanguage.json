@@ -1,0 +1,92 @@
+{
+	"scopeName": "text.html.asok",
+	"name": "Asok HTML",
+	"patterns": [
+		{
+			"include": "#comments"
+		},
+		{
+			"include": "#tags"
+		},
+		{
+			"include": "#variables"
+		},
+		{
+			"include": "#asok-attributes"
+		},
+		{
+			"include": "text.html.basic"
+		}
+	],
+	"repository": {
+		"comments": {
+			"begin": "\\{#",
+			"beginCaptures": {
+				"0": { "name": "punctuation.definition.comment.html" }
+			},
+			"end": "#\\}",
+			"endCaptures": {
+				"0": { "name": "punctuation.definition.comment.html" }
+			},
+			"name": "comment.block.asok"
+		},
+		"tags": {
+			"begin": "\\{%",
+			"beginCaptures": {
+				"0": { "name": "punctuation.definition.tag.asok" }
+			},
+			"end": "%\\}",
+			"endCaptures": {
+				"0": { "name": "punctuation.definition.tag.asok" }
+			},
+			"name": "meta.tag.template.asok",
+			"patterns": [
+				{
+					"match": "\\b(if|elif|else|endif|for|endfor|set|endset|do|with|endwith|call|endcall|macro|endmacro|filter|endfilter|extends|include|import|from|block|endblock|raw|endraw|autoescape|endautoescape|break|continue|is|not|and|or|in)\\b",
+					"name": "keyword.control.asok"
+				},
+				{
+					"match": "\\b(defined|undefined|none|true|false|even|odd|string|number|boolean|integer|float|sequence|mapping|iterable|lower|upper)\\b",
+					"name": "support.function.asok"
+				},
+				{
+					"match": "\\bloop\\.(index|index0|first|last|length|revindex|revindex0|cycle|depth|depth0|previtem|nextitem)\\b",
+					"name": "variable.language.loop.asok"
+				},
+				{
+					"match": "\\|\\s*(upper|lower|capitalize|title|truncate|replace|join|default|striptags|length|date|pluralize|abs|tojson|first|last|safe|escape|e|time_ago|filesize|intcomma|duration|decode_base64)\\b",
+					"name": "support.function.filter.asok"
+				}
+			]
+		},
+		"variables": {
+			"begin": "\\{\\{",
+			"beginCaptures": {
+				"0": { "name": "punctuation.definition.variable.asok" }
+			},
+			"end": "\\}\\}",
+			"endCaptures": {
+				"0": { "name": "punctuation.definition.variable.asok" }
+			},
+			"name": "meta.variable.asok",
+			"patterns": [
+				{
+					"match": "\\bloop\\.(index|index0|first|last|length|revindex|revindex0|cycle|depth|depth0|previtem|nextitem)\\b",
+					"name": "variable.language.loop.asok"
+				},
+				{
+					"match": "\\|\\s*(upper|lower|capitalize|title|truncate|replace|join|default|striptags|length|date|pluralize|abs|tojson|first|last|safe|escape|e|time_ago|filesize|intcomma|duration|decode_base64)\\b",
+					"name": "support.function.filter.asok"
+				}
+			]
+		},
+		"asok-attributes": {
+			"patterns": [
+				{
+					"name": "entity.other.attribute-name.html",
+					"match": "\\b(asok-|data-|ws-)[a-zA-Z0-9_.:-]+\\b"
+				}
+			]
+		}
+	}
+}
