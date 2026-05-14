@@ -73,7 +73,11 @@
         },
         "tailwindCSS.includeLanguages": {
           "asok-html": "html"
-        }
+        },
+        "tailwindCSS.experimental.classRegex": [
+          ["asok-class=\"([^\"]*)\"", "([^'\"\\s]+)"],
+          ["asok-class:[a-zA-Z0-9_-]+=\"([^\"]*)\"", "([^'\"\\s]+)"]
+        ]
       }
     },
     "grammars": [

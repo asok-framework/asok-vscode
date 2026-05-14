@@ -42,7 +42,7 @@
 			"name": "meta.tag.template.asok",
 			"patterns": [
 				{
-					"match": "\\b(if|elif|else|endif|for|endfor|set|endset|do|with|endwith|call|endcall|macro|endmacro|filter|endfilter|extends|include|import|from|block|endblock|raw|endraw|autoescape|endautoescape|break|continue|is|not|and|or|in)\\b",
+					"match": "\\b(if|elif|else|endif|for|endfor|set|endset|do|with|endwith|call|endcall|macro|endmacro|filter|endfilter|extends|include|import|from|block|endblock|raw|endraw|autoescape|endautoescape|cache|endcache|break|continue|is|not|and|or|in)\\b",
 					"name": "keyword.control.asok"
 				},
 				{

@@ -44,6 +44,8 @@ const ASOK_DOCS: Record<string, string> = {
 	'break': '### Asok Break\nExit a loop early.',
 	'continue': '### Asok Continue\nSkip to the next iteration of a loop.',
 	'autoescape': '### Asok Autoescape\nControl HTML auto-escaping for a block.\n\n`{% autoescape false %} ... {% endautoescape %}`',
+	'cache': '### Asok Cache\nCache a template fragment to improve performance. The content inside will only be executed once per TTL.\n\n```html\n{% cache "my_block" 3600 %}\n  <!-- Expensive loop or queries -->\n  {% for item in heavy_data %}...{% endfor %}\n{% endcache %}\n```',
+	'cache_page': '### Asok Cache Page\nDecorator to cache the entire response of a page handler.\n\n```python\n@cache_page(ttl=60)\ndef render(request):\n    ...\n```',
 
 	// Filters
 	'upper': '### Filter: upper\nConvert string to uppercase.\n\n`{{ name | upper }}`',
@@ -191,57 +193,42 @@ export function activate(context: vscode.ExtensionContext) {
 		});
 	}
 
-	// Completion Provider for asok-html to restore HTML tags
+	// Auto-enable Tailwind CSS for Asok HTML
+	const tailwindConfig = vscode.workspace.getConfiguration('tailwindCSS');
+	const tailwindInclude: any = tailwindConfig.get('includeLanguages', {});
+	
+	if (!tailwindInclude['asok-html']) {
+		vscode.window.showInformationMessage('Enable Tailwind CSS for Asok HTML?', 'Enable').then(selection => {
+			if (selection === 'Enable') {
+				tailwindInclude['asok-html'] = 'html';
+				tailwindConfig.update('includeLanguages', tailwindInclude, vscode.ConfigurationTarget.Global);
+			}
+		});
+	}
+
+	// Completion Provider for asok-html to suggest Asok directives
 	const completionProvider = vscode.languages.registerCompletionItemProvider('asok-html', {
 		provideCompletionItems(document, position) {
-			// If we are likely typing an attribute (after a space inside a tag)
-			const htmlAttributes = [
-				'class', 'id', 'style', 'title', 'lang', 'dir', 'hidden',
-				'src', 'href', 'alt', 'type', 'value', 'placeholder', 
-				'name', 'target', 'rel', 'width', 'height', 'method', 'action',
-				'required', 'readonly', 'disabled', 'checked', 'selected', 'autofocus'
-			];
-
-			const tags = [
-				'div', 'span', 'p', 'a', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 
-				'ul', 'ol', 'li', 'img', 'form', 'input', 'button', 'select', 'option', 
-				'textarea', 'label', 'table', 'tr', 'td', 'th', 'section', 'header', 
-				'footer', 'main', 'nav', 'aside', 'template', 'slot', 'canvas', 'svg'
-			];
-
 			const linePrefix = document.lineAt(position).text.substring(0, position.character);
 			
-			// Detect if we are inside a tag but not in a value
-			// Logic: find the last '<', check if there is no '>' after it
+			// Detect if we are likely typing an attribute
 			const lastOpenTag = linePrefix.lastIndexOf('<');
 			const lastCloseTag = linePrefix.lastIndexOf('>');
 			
 			if (lastOpenTag > lastCloseTag) {
-				return [
-					...htmlAttributes.map(attr => {
-						const item = new vscode.CompletionItem(attr, vscode.CompletionItemKind.Property);
-						item.insertText = new vscode.SnippetString(`${attr}="$1"$0`);
-						return item;
-					}),
-					...Object.keys(ASOK_DOCS).map(directive => {
+				// Only suggest Asok-specific directives to avoid blocking standard HTML/Tailwind completions
+				return Object.keys(ASOK_DOCS)
+					.filter(key => key.startsWith('asok-') || key.startsWith('data-') || key.startsWith('ws-'))
+					.map(directive => {
 						const item = new vscode.CompletionItem(directive, vscode.CompletionItemKind.Field);
 						item.documentation = new vscode.MarkdownString(ASOK_DOCS[directive as keyof typeof ASOK_DOCS]);
 						item.insertText = new vscode.SnippetString(`${directive}="$1"$0`);
 						if (directive === 'asok-cloak') item.insertText = directive;
 						return item;
-					})
-				];
+					});
 			}
 
-			// Suggest tags
-			return tags.map(tag => {
-				const item = new vscode.CompletionItem(tag, vscode.CompletionItemKind.Class);
-				item.insertText = new vscode.SnippetString(`<${tag}>\n\t$0\n</${tag}>`);
-				if (['img', 'input', 'br', 'hr', 'meta', 'link'].includes(tag)) {
-					item.insertText = new vscode.SnippetString(`<${tag} $0>`);
-				}
-				return item;
-			});
+			return [];
 		}
 	});
 

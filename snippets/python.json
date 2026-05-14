@@ -162,5 +162,20 @@
 			"\t$0"
 		],
 		"description": "Scaffold an Asok Schema"
+	},
+	"Asok Cache Page": {
+		"prefix": "as-cache-page",
+		"body": [
+			"from asok.cache import cache_page",
+			"",
+			"@cache_page(ttl=${1:60})",
+			"$0"
+		],
+		"description": "Asok Page Caching Decorator"
+	},
+	"Asok ORM Cache": {
+		"prefix": "as-orm-cache",
+		"body": ".cache(ttl=${1:300})",
+		"description": "Asok ORM: Enable query caching"
 	}
 }

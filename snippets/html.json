@@ -272,5 +272,14 @@
 		"prefix": "$refs",
 		"body": "$refs.$0",
 		"description": "Asok Special Variable: Element References"
+	},
+	"Asok Cache": {
+		"prefix": "as-cache",
+		"body": [
+			"{% cache \"${1:key}\" ${2:3600} %}",
+			"\t$0",
+			"{% endcache %}"
+		],
+		"description": "Asok Template Fragment Caching"
 	}
 }
